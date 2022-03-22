@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\Brandon Local\Desktop\CPP\Spring 2022\Automata\BChaoCS3110Project1\InterpreterEmulator\.metadata\.plugins\org.eclipse.jdt.core
+3960175932.index
+3638472311.index
