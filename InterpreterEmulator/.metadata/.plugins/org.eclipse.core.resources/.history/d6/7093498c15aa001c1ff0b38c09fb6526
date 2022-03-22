@@ -44,8 +44,7 @@ public class OneLineInput_StringToInt {
 	*<p>
 	*Must only consist of decimal points, (E/e), (+/-), [0-9]
 	*<p>
-	*@param x the input from terminal
-	*@return boolean describing whether a string is a mathematical value
+	*@param User Input from terminal
 	*/
 	public boolean validateString(String x) {
 		boolean valid = true;

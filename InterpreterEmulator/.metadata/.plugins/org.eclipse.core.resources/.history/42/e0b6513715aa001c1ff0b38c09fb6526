@@ -32,20 +32,16 @@ public class OneLineInput_StringToInt {
 		}
 	}
 	
-	/** Confirm Valid Input 
-	*<p> 
+	/**@return Confirm Valid Input
 	*At most 1 Decimal Point
 	*At most 1 (E/e)
 	*At most 1 sign(+/-)
-	*<p>
+	**
 	*If decimal, must occur before (E/e)
 	*If(E/e), must be followed by integer
 	*If (+/-), must occur at first index
-	*<p>
+	*
 	*Must only consist of decimal points, (E/e), (+/-), [0-9]
-	*<p>
-	*@param x the input from terminal
-	*@return boolean describing whether a string is a mathematical value
 	*/
 	public boolean validateString(String x) {
 		boolean valid = true;
