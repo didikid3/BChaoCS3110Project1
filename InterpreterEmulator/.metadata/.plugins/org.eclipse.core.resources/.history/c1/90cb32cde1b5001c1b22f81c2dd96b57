@@ -147,7 +147,7 @@ public class OneLineInput_StringToInt {
 		boolean decimalPlaced = false;
 		int decimalPosition = 1;
 		
-		double exponentValue = 0;
+		int exponentValue = 0;
 		int exponentSignValue = 1;
 		boolean exponentSign = false;
 		boolean exponent = false;
@@ -205,14 +205,11 @@ public class OneLineInput_StringToInt {
 
 		}//END FOR LOOP
 		exponentValue = exponentSignValue * exponentValue;
-		exponentValue = Math.pow(10, exponentValue);
-		result = sign*result*exponentValue;
-		
-		result = result * Math.pow(10, length);
-		result = Math.round(result);
-		result = result / Math.pow(10, length);
-		
-
+		System.out.println(exponentValue);
+		System.out.println(result);
+		result = sign*result;
+		System.out.println(result);
+		result = result * (Math.pow(10, exponentValue));
 		
 		return result;
 	}//END STRING TO VALUE
@@ -258,9 +255,10 @@ public class OneLineInput_StringToInt {
 	}
 	*/
 	public static void main(String[] args) {
-		//OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+
+		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+
 		//machine.runTestCases();
 		OneLineInput_StringToInt.emulator();
-		System.out.println(3.2*Math.pow(10, -1));
 	}
 }

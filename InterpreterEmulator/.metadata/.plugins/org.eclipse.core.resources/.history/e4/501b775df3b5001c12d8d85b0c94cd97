@@ -213,6 +213,7 @@ public class OneLineInput_StringToInt {
 		result = result / Math.pow(10, length);
 		
 
+
 		
 		return result;
 	}//END STRING TO VALUE

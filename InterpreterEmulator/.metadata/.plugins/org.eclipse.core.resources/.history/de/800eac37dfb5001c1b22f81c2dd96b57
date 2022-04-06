@@ -68,17 +68,11 @@ public class OneLineInput_StringToInt {
 			//Or occur immediately after (E/e)
 			case 43:
 			case 45:
-				if(includesExponent) {
-					if(exponentIsLast) {
-						exponentIsLast = false;
-					}
-					else
-					{
-						return false;
-					}
-				}
-				else if(i!= 0)
+				if(i!= 0)
 					return false;
+				else if(exponentIsLast) {
+					exponentIsLast = false;
+				}
 					
 				break;
 			
@@ -86,10 +80,6 @@ public class OneLineInput_StringToInt {
 			//At most 1 Decimal Point
 			//If decimal, must occur before (E/e)
 			case 46:
-				if(includesExponent && exponentIsLast) {
-					exponentIsLast = false;
-				}
-				
 				if(includesExponent || includesDecimal)
 					return false;
 				includesDecimal = true;
@@ -120,10 +110,6 @@ public class OneLineInput_StringToInt {
 			case 55:
 			case 56:
 			case 57:
-				if(includesExponent && exponentIsLast) {
-					exponentIsLast = false;
-				}
-				
 				break;
 			
 			default:
@@ -147,11 +133,8 @@ public class OneLineInput_StringToInt {
 		boolean decimalPlaced = false;
 		int decimalPosition = 1;
 		
-		double exponentValue = 0;
-		int exponentSignValue = 1;
-		boolean exponentSign = false;
+		int exponentValue = 0;
 		boolean exponent = false;
-		
 		for(int i = 0; i<length; i++){
 			letter = x.charAt(i);
 			asciiValue = (int) letter;
@@ -184,35 +167,13 @@ public class OneLineInput_StringToInt {
 			}
 			//Everything after E should be separate from actual value
 			else {
-				if(!exponentSign) {
-					if(asciiValue == 43 || asciiValue == 45) {
-						if (asciiValue == 45) {
-							exponentSign = true;
-							exponentSignValue = -1;
-						}
-						else
-							exponentSign = true;
-					}
-					else {
-						exponentValue = (exponentValue * 10) + (asciiValue - 48);
-					}
-				}
-				else {
-					exponentValue = (exponentValue * 10) + (asciiValue - 48);
-				}
+				exponentValue = (exponentValue * 10) + (asciiValue - 48);
 			}
 				
 
 		}//END FOR LOOP
-		exponentValue = exponentSignValue * exponentValue;
-		exponentValue = Math.pow(10, exponentValue);
-		result = sign*result*exponentValue;
 		
-		result = result * Math.pow(10, length);
-		result = Math.round(result);
-		result = result / Math.pow(10, length);
-		
-
+		result = sign * result * (Math.pow(10, exponentValue));
 		
 		return result;
 	}//END STRING TO VALUE
@@ -258,9 +219,9 @@ public class OneLineInput_StringToInt {
 	}
 	*/
 	public static void main(String[] args) {
-		//OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+
+		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
 		//machine.runTestCases();
 		OneLineInput_StringToInt.emulator();
-		System.out.println(3.2*Math.pow(10, -1));
 	}
 }

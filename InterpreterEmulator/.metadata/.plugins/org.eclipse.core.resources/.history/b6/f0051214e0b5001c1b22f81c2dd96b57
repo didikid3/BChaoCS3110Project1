@@ -147,11 +147,8 @@ public class OneLineInput_StringToInt {
 		boolean decimalPlaced = false;
 		int decimalPosition = 1;
 		
-		double exponentValue = 0;
-		int exponentSignValue = 1;
-		boolean exponentSign = false;
+		int exponentValue = 0;
 		boolean exponent = false;
-		
 		for(int i = 0; i<length; i++){
 			letter = x.charAt(i);
 			asciiValue = (int) letter;
@@ -184,35 +181,13 @@ public class OneLineInput_StringToInt {
 			}
 			//Everything after E should be separate from actual value
 			else {
-				if(!exponentSign) {
-					if(asciiValue == 43 || asciiValue == 45) {
-						if (asciiValue == 45) {
-							exponentSign = true;
-							exponentSignValue = -1;
-						}
-						else
-							exponentSign = true;
-					}
-					else {
-						exponentValue = (exponentValue * 10) + (asciiValue - 48);
-					}
-				}
-				else {
-					exponentValue = (exponentValue * 10) + (asciiValue - 48);
-				}
+				exponentValue = (exponentValue * 10) + (asciiValue - 48);
 			}
 				
 
 		}//END FOR LOOP
-		exponentValue = exponentSignValue * exponentValue;
-		exponentValue = Math.pow(10, exponentValue);
-		result = sign*result*exponentValue;
 		
-		result = result * Math.pow(10, length);
-		result = Math.round(result);
-		result = result / Math.pow(10, length);
-		
-
+		result = sign * result * (Math.pow(10, exponentValue));
 		
 		return result;
 	}//END STRING TO VALUE
@@ -258,9 +233,9 @@ public class OneLineInput_StringToInt {
 	}
 	*/
 	public static void main(String[] args) {
-		//OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+
+		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
 		//machine.runTestCases();
 		OneLineInput_StringToInt.emulator();
-		System.out.println(3.2*Math.pow(10, -1));
 	}
 }
