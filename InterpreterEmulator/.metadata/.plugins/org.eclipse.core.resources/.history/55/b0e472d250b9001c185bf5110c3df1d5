@@ -126,9 +126,6 @@ public class OneLineInput_StringToInt {
 				
 				break;
 			
-			//Underscore
-			case 95:
-				break;
 			default:
 				return false;
 			}//END SWITCH
@@ -183,7 +180,6 @@ public class OneLineInput_StringToInt {
 				//69 & 101 (E & e)
 				if(asciiValue == 69 || asciiValue == 101)
 					exponent = true;
-				
 				
 			}
 			//Everything after E should be separate from actual value
