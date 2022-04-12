@@ -281,8 +281,8 @@ public class OneLineInput_StringToInt {
 	}
 	*/
 	public static void main(String[] args) {
-		//OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
-		//machine.runTestCases();
-		OneLineInput_StringToInt.emulator();
+		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+		machine.runTestCases();
+		//OneLineInput_StringToInt.emulator();
 	}
 }

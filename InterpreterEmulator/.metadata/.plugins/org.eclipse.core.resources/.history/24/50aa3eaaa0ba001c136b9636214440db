@@ -257,7 +257,6 @@ public class OneLineInput_StringToInt {
 		isValid("3.42E5");
 		isValid("52_1235");
 		isValid("47.2_1");
-		isValid("4_2e-5");
 	}
 	
 	/*
@@ -281,8 +280,8 @@ public class OneLineInput_StringToInt {
 	}
 	*/
 	public static void main(String[] args) {
-		//OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
-		//machine.runTestCases();
-		OneLineInput_StringToInt.emulator();
+		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+		machine.runTestCases();
+		//OneLineInput_StringToInt.emulator();
 	}
 }
