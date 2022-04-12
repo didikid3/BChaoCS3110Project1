@@ -8,12 +8,12 @@ public class OneLineInput_StringToInt {
 		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
 		
 		System.out.println("Brandon Chao Number Reader");
-		System.out.println("Type 'exit' to terminate");
+		System.out.println("Type 'q' to terminate");
 		Scanner scan = new Scanner(System.in);
 		String s = "";
 		System.out.print(">>>");
 		s = scan.next();
-		while(!s.equals("exit")) {
+		while(!s.equals("q")) {
 			machine.isValid(s);
 			System.out.print(">>>");
 			s = scan.next();
@@ -95,9 +95,8 @@ public class OneLineInput_StringToInt {
 				includesDecimal = true;
 				break;
 				
-			case 68:	
+				
 			case 70:
-			case 100:
 			case 102:
 				if(i != stringLength - 1)
 					return false;
@@ -165,6 +164,7 @@ public class OneLineInput_StringToInt {
 		for(int i = 0; i<length; i++){
 			letter = x.charAt(i);
 			asciiValue = (int) letter;
+			System.out.println(asciiValue);
 			
 			//Check if value is negative or positive
 			if(i == 0) {
@@ -205,15 +205,13 @@ public class OneLineInput_StringToInt {
 								exponentSign = true;
 						}
 						else {
-							if(asciiValue != 70 && asciiValue != 102 && 
-									asciiValue != 68 && asciiValue != 100) {
+							if(asciiValue != 70 || asciiValue != 102) {
 								exponentValue = (exponentValue * 10) + (asciiValue - 48);
 							}
 						}
 					}
 					else {
-						if(asciiValue != 70 && asciiValue != 102 && 
-								asciiValue != 68 && asciiValue != 100)
+						if(asciiValue != 70 || asciiValue != 102)
 						{
 							exponentValue = (exponentValue * 10) + (asciiValue - 48);
 						}
