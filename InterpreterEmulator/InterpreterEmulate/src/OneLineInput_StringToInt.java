@@ -77,6 +77,8 @@ public class OneLineInput_StringToInt {
 						return false;
 					}
 				}
+				//May Need to change if values must be unary
+				//IE NO NEGATIVE IN FRONT
 				else if(i!= 0)
 					return false;
 					

@@ -68,11 +68,17 @@ public class OneLineInput_StringToInt {
 			//Or occur immediately after (E/e)
 			case 43:
 			case 45:
-				if(i!= 0)
-					return false;
-				else if(exponentIsLast) {
-					exponentIsLast = false;
+				if(includesExponent) {
+					if(exponentIsLast) {
+						exponentIsLast = false;
+					}
+					else
+					{
+						return false;
+					}
 				}
+				else if(i!= 0)
+					return false;
 					
 				break;
 			
@@ -80,11 +86,22 @@ public class OneLineInput_StringToInt {
 			//At most 1 Decimal Point
 			//If decimal, must occur before (E/e)
 			case 46:
+				if(includesExponent && exponentIsLast) {
+					exponentIsLast = false;
+				}
+				
 				if(includesExponent || includesDecimal)
 					return false;
 				includesDecimal = true;
 				break;
 				
+			case 68:	
+			case 70:
+			case 100:
+			case 102:
+				if(i != stringLength - 1)
+					return false;
+				break;
 				
 			//At most 1 (E/e)
 			//If(E/e), must be followed by integer
@@ -110,8 +127,15 @@ public class OneLineInput_StringToInt {
 			case 55:
 			case 56:
 			case 57:
+				if(includesExponent && exponentIsLast) {
+					exponentIsLast = false;
+				}
+				
 				break;
 			
+			//Underscore
+			case 95:
+				break;
 			default:
 				return false;
 			}//END SWITCH
@@ -133,8 +157,11 @@ public class OneLineInput_StringToInt {
 		boolean decimalPlaced = false;
 		int decimalPosition = 1;
 		
-		int exponentValue = 0;
+		double exponentValue = 0;
+		int exponentSignValue = 1;
+		boolean exponentSign = false;
 		boolean exponent = false;
+		
 		for(int i = 0; i<length; i++){
 			letter = x.charAt(i);
 			asciiValue = (int) letter;
@@ -164,16 +191,48 @@ public class OneLineInput_StringToInt {
 				if(asciiValue == 69 || asciiValue == 101)
 					exponent = true;
 				
+				
 			}
 			//Everything after E should be separate from actual value
 			else {
-				exponentValue = (exponentValue * 10) + (asciiValue - 48);
+					if(!exponentSign) {
+						if(asciiValue == 43 || asciiValue == 45) {
+							if (asciiValue == 45) {
+								exponentSign = true;
+								exponentSignValue = -1;
+							}
+							else
+								exponentSign = true;
+						}
+						else {
+							if(asciiValue != 70 && asciiValue != 102 && 
+									asciiValue != 68 && asciiValue != 100
+									&& asciiValue != 95) {
+								exponentValue = (exponentValue * 10) + (asciiValue - 48);
+							}
+						}
+					}
+					else {
+						if(asciiValue != 70 && asciiValue != 102 && 
+								asciiValue != 68 && asciiValue != 100
+								&& asciiValue != 95)
+						{
+							exponentValue = (exponentValue * 10) + (asciiValue - 48);
+						}
+					}
 			}
 				
 
 		}//END FOR LOOP
+		exponentValue = exponentSignValue * exponentValue;
+		exponentValue = Math.pow(10, exponentValue);
+		result = sign*result*exponentValue;
 		
-		result = sign * result * (Math.pow(10, exponentValue));
+		result = result * Math.pow(10, length);
+		result = Math.round(result);
+		result = result / Math.pow(10, length);
+		
+
 		
 		return result;
 	}//END STRING TO VALUE
@@ -196,6 +255,9 @@ public class OneLineInput_StringToInt {
 		isValid("-2");
 		isValid("342e2");
 		isValid("3.42E5");
+		isValid("52_1235");
+		isValid("47.2_1");
+		isValid("4_2e-5");
 	}
 	
 	/*
@@ -219,8 +281,7 @@ public class OneLineInput_StringToInt {
 	}
 	*/
 	public static void main(String[] args) {
-
-		OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
+		//OneLineInput_StringToInt machine = new OneLineInput_StringToInt();
 		//machine.runTestCases();
 		OneLineInput_StringToInt.emulator();
 	}
