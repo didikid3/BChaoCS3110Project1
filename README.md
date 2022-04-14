@@ -2,7 +2,7 @@
 
 Brandon Chao CS 3110 Project 1
 (Does accept integers)
-![My Image]("WeChat Image_20220413211025.jpg")
+<img src="DFA_Project.jpg" alt="Alt text" title="Optional title">
 
 AND
 will have Project 2
