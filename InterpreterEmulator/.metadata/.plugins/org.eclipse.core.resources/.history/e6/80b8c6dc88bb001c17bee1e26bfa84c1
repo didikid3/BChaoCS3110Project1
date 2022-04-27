@@ -229,7 +229,7 @@ public class OneLineInput_StringToInt {
 		exponentValue = exponentSignValue * exponentValue;
 		exponentValue = Math.pow(10, exponentValue);
 		result = sign*result*exponentValue;
-
+		Systen.out.println(result);
 		result = result * Math.pow(10, length);
 		result = Math.round(result);
 		result = result / Math.pow(10, length);
