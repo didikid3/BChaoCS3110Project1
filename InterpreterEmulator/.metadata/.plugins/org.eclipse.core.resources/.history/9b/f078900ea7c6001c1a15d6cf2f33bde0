@@ -22,9 +22,8 @@ public class floatPointValue {
 	
 	
 	public void validate(String x) {
-		double value = isValid(x);
-		if(value != -1) {
-			System.out.println(value);
+		if(isValid(x)) {
+			System.out.println(valueOf(x));
 		}
 		else
 			System.out.println("ERROR: '" + x + "' is not a valid value");
@@ -290,6 +289,11 @@ public class floatPointValue {
 		return value;
 	}
 	
+	public float valueOf(String x) {
+		float result = 1;
+		
+		return result;
+	}
 	
 	public static void main(String[] args) {
 		floatPointValue machine = new floatPointValue();

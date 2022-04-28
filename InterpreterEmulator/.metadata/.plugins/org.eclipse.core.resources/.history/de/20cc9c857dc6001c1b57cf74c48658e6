@@ -22,15 +22,14 @@ public class floatPointValue {
 	
 	
 	public void validate(String x) {
-		double value = isValid(x);
-		if(value != -1) {
-			System.out.println(value);
+		if(isValid(x)) {
+			System.out.println(valueOf(x));
 		}
 		else
 			System.out.println("ERROR: '" + x + "' is not a valid value");
 	}
 	
-	public double isValid(String x)
+	public boolean isValid(String x)
 	{
 		int size = x.length();
 		int state = 1;
@@ -60,7 +59,7 @@ public class floatPointValue {
 						state = 3;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 2:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -83,7 +82,7 @@ public class floatPointValue {
 						state = 9;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 3:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -93,7 +92,7 @@ public class floatPointValue {
 						decimal += 1;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 4:
 					if(asciiValue == 95) {
@@ -105,11 +104,11 @@ public class floatPointValue {
 						value = (value*10) + (asciiValue-48);
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 5:
 					if(i != size - 1) {
-						return -1;
+						return false;
 					}
 					break;
 				case 6:
@@ -130,7 +129,7 @@ public class floatPointValue {
 						state = 13;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 7:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -147,7 +146,7 @@ public class floatPointValue {
 						state = 5;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 8:
 					if(asciiValue == 95) {
@@ -160,7 +159,7 @@ public class floatPointValue {
 						decimal += 1;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 9:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -176,7 +175,7 @@ public class floatPointValue {
 						}
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 10:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -185,7 +184,7 @@ public class floatPointValue {
 						exponent = (exponent*10) + (asciiValue-48);
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 11:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -201,7 +200,7 @@ public class floatPointValue {
 						state = 5;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 12:
 					if(asciiValue == 95) {
@@ -213,7 +212,7 @@ public class floatPointValue {
 						exponent = (exponent*10) + (asciiValue-48);
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 13:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -229,7 +228,7 @@ public class floatPointValue {
 						}
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 14:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -238,7 +237,7 @@ public class floatPointValue {
 						exponent = (exponent*10) + (asciiValue-48);
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 15:
 					if(asciiValue >= 48 && asciiValue <= 57) {
@@ -254,7 +253,7 @@ public class floatPointValue {
 						state = 16;
 					}
 					else
-						return -1;
+						return false;
 					break;
 				case 16:
 					if(asciiValue == 95) {
@@ -266,7 +265,7 @@ public class floatPointValue {
 						exponent = (exponent*10) + (asciiValue-48);
 					}
 					else
-						return -1;
+						return false;
 					break;
 			}
 		}
@@ -278,18 +277,17 @@ public class floatPointValue {
 				state == 13 || state == 14 ||
 				state == 16
 		) {
-			return -1;
+			return false;
 		}
 		
-		value = value * Math.pow(10, -1* decimal);
-		if(exponentSign)
-			value = value * Math.pow(10,-1* exponent);
-		else
-			value = value * Math.pow(10, exponent);
-		
-		return value;
+		return true;
 	}
 	
+	public float valueOf(String x) {
+		float result = 1;
+		
+		return result;
+	}
 	
 	public static void main(String[] args) {
 		floatPointValue machine = new floatPointValue();

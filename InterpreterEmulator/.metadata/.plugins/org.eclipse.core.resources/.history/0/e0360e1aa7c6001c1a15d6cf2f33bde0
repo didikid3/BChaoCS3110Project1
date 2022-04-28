@@ -22,9 +22,9 @@ public class floatPointValue {
 	
 	
 	public void validate(String x) {
-		double value = isValid(x);
+		int value = isValid(x);
 		if(value != -1) {
-			System.out.println(value);
+			System.out.println(valueOf(x));
 		}
 		else
 			System.out.println("ERROR: '" + x + "' is not a valid value");
